@@ -1,0 +1,157 @@
+/* 
+* CSS Horrifique pour l'Atelier
+* Pièges intégrés : outline removed, mauvais contrastes, targets minuscules, etc.
+*/
+
+* {
+    /* Impossible de savoir où on est en naviguant avec Tab */
+    outline: none !important; 
+    box-sizing: border-box;
+}
+
+body {
+    /* Police Serif difficile à lire sur écran pour les petits textes */
+    font-family: 'Times New Roman', Times, serif; 
+    background-color: #fcfcfc;
+    margin: 0;
+    padding: 0;
+    /* Contraste très faible */
+    color: #999; 
+}
+
+.header {
+    background-color: #eaeaea;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.nav span {
+    /* Liens trop proches */
+    margin: 0 5px; 
+    color: #b0b0b0; 
+    /* Pas de curseur pointer */
+    cursor: default; 
+}
+
+.intro-container {
+    padding: 20px;
+}
+
+.long-text {
+    /* Lignes trop longues, l'œil se perd */
+    width: 100%; 
+    font-size: 12px;
+    /* Pas d'interligne (respiration) */
+    line-height: 1; 
+}
+
+/* --- Formulaire --- */
+.form-container {
+    background-color: white;
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+h2 {
+    font-size: 14px;
+    color: #888;
+}
+
+.form-row {
+    /* Éléments collés (Fat Finger Syndrome) */
+    margin-bottom: 2px; 
+    display: flex;
+    gap: 2px;
+}
+
+input {
+    border: 1px solid #eee;
+    background-color: #fbfbfb;
+    color: #b3b3b3;
+    /* Pading minuscule, zone de clic < 44px */
+    padding: 4px; 
+    font-size: 11px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: #d0d0d0; /* Presque invisible */
+}
+
+/* Retour d'erreur uniquement via la couleur (Daltonisme) */
+input.error {
+    border: 1px solid #ff9999; 
+}
+
+.tiny-input {
+    width: 35px; /* Très dur de cliquer dessus sur mobile */
+}
+
+.fake-checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.fake-checkbox {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    background-color: white;
+}
+
+.fake-checkbox.checked {
+    background-color: #ddd;
+}
+
+.cgv-text {
+    font-size: 9px;
+}
+
+.actions {
+    margin-top: 10px;
+    /* Positionnement peu ergonomique pour les droitiers sur grand écran */
+    display: flex;
+    justify-content: flex-start; 
+}
+
+.btn {
+    /* Padding infime */
+    padding: 3px 8px; 
+    /* Même couleur de fond pour les deux boutons = ambiguïté */
+    background-color: #cccccc; 
+    /* Texte blanc sur fond gris clair = Contraste catastrophique */
+    color: white; 
+    font-size: 12px;
+    /* Bouton d'annulation juste à côté de celui de validation */
+    margin-right: 4px; 
+}
+
+/* Erreurs globales */
+.global-errors {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    margin: 10px;
+    font-size: 11px;
+    text-align: center;
+}
+
+.promo-banner {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.promo-banner img {
+    max-width: 100%;
+    opacity: 0.8;
+}

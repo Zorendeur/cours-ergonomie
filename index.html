@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande - SuperBoutique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">SuperBoutique</div>
+        <!-- Non-obvious navigation : on ne sait pas que ce sont des liens -->
+        <div class="nav">
+            <span>Accueil</span>
+            <span>Produits</span>
+            <span>Contact</span>
+        </div>
+    </div>
+
+    <!-- Long line of text for intro (charge cognitive, sans line-height ni max-width) -->
+    <div class="intro-container">
+        <p class="long-text">
+            Bienvenue sur notre page de finalisation de commande. Veuillez remplir l'intégralité des champs ci-dessous avec une grande attention pour que nous puissions traiter votre demande le plus rapidement possible sans que vous ne rencontriez le moindre problème lors de la livraison de vos articles préférés achetés sur notre plateforme en ligne. Notez qu'en cas d'erreur de saisie la commande sera annulée sans notification préalable.
+        </p>
+    </div>
+
+    <!-- Message d'erreur global (loin du contexte) -->
+    <div id="global-errors" class="global-errors" style="display: none;"></div>
+
+    <div class="form-container">
+        <!-- Faux formulaire (ne peut pas être validé avec Entrée) -->
+        <div class="fake-form">
+            <h2>Détails de facturation</h2>
+            
+            <div class="form-row">
+                <!-- Absences de label, navigation au clavier chaotique avec des tabindex illogiques -->
+                <input type="text" id="prenom" placeholder="Prénom" tabindex="3">
+                <input type="text" id="nom" placeholder="Nom" tabindex="2">
+            </div>
+
+            <div class="form-row">
+                <!-- Problème de contraste, placeholder qui disparaît -->
+               <input type="text" id="email" placeholder="Adresse e-mail (ex: jean@mail.com)" tabindex="1">
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="adresse" placeholder="Adresse complète" tabindex="4">
+            </div>
+
+            <div class="form-row">
+                <!-- Fat finger : input trop petit -->
+                <input type="text" id="cp" placeholder="CP" class="tiny-input" tabindex="5">
+                <input type="text" id="ville" placeholder="Ville" tabindex="6">
+            </div>
+
+            <!-- Fausse checkbox en div (inaccessible au clavier) -->
+            <div class="fake-checkbox-container">
+                <div class="fake-checkbox" id="cgv-box" tabindex="7"></div>
+                <!-- Texte trop petit -->
+                <span class="cgv-text">En cochant cette case, j'accepte les conditions générales de vente.</span>
+            </div>
+
+            <div class="actions">
+                <!-- Faux boutons en div, pas d'état hover, très proches l'un de l'autre -->
+                <!-- L'utilisateur risque de cliquer sur "Annuler" par erreur (Loi de Fitts) -->
+                <div class="btn cancel-btn" tabindex="8">Annuler</div>
+                <div class="btn submit-btn" tabindex="9" id="submit-order">Payer</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image sans alt text -->
+    <div class="promo-banner">
+        <img src="https://via.placeholder.com/1200x300.png?text=Promo+Exclusive" />
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
