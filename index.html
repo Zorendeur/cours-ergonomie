@@ -3,25 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Portail de Formation</title>
+    <title>Accueil - Alexandre Formateur</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="landing-body">
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1>L'Excellence Pédagogique</h1>
-            <p class="subtitle">Bienvenue sur le portail dédié à l'apprentissage et au perfectionnement continu. Découvrez une approche unique de la formation en développement et design.</p>
+<body class="common-body">
+  
+    <header class="main-header">
+        <div class="logo">Alexandre - Formateur Expert</div>
+        <nav class="main-nav">
             
-            <!-- Le bouton principal qui attire l'oeil mais ne mène nulle part / affiche une erreur -->
-            <div class="btn-primary fake-cta" onclick="alert('Ce module est en cours de maintenance.')">Découvrir les formations</div>
-        </div>
-    </div>
+            <span class="nav-item active">Accueil</span>
+            <span class="nav-item" onclick="window.location.href='presentation.html'">Profil</span>
+            <span class="nav-item">Contact</span>
+        </nav>
+    </header>
 
-    <!-- Le VRAI lien vers la présentation, caché en bas, non souligné, ressemble à du texte normal -->
+    <main class="content-wrapper">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>L'Excellence Pédagogique</h1>
+                <p class="long-bio center-text">
+                    Bienvenue sur le portail dédié à l'apprentissage et au perfectionnement continu. Découvrez une approche unique de la formation en développement et design. L'ensemble des modules sont pensés pour maximiser l'interaction et la montée en compétences rapide de tous nos apprenants, quels que soient leurs pré-requis techniques.
+                </p>
+                
+               
+                <div class="btn-primary fake-cta" onclick="alert('Ce module est en cours de maintenance.')">Découvrir les formations</div>
+            </div>
+        </div>
+
+        <section class="news-section">
+            <h2>Dernières actualités de notre réseau d'experts en pédagogie digitale</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <span class="news-date">12 Mars 2026</span>
+                    <h3>Nouveau module disponible</h3>
+                    <p>Nous sommes heureux d'annoncer que dans un futur proche, nous allons déployer de nouvelles solutions d'apprentissage qui révolutionneront votre façon de concevoir des interfaces. Restez connectés pour plus d'informations qui arriveront bientôt sur cette même page.</p>
+                    <div class="read-more">Lire la suite...</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-date">05 Mars 2026</span>
+                    <h3>Retour sur la conférence annuelle</h3>
+                    <p>Lors de notre dernière intervention, nous avons abordé des thématiques variées autour de la synergie entre les équipes techniques. La synergie est le maître mot de l'année 2026. L'agilité permet une approche holistique du besoin client.</p>
+                    <div class="read-more">Lire la suite...</div>
+                </div>
+                <div class="news-card">
+                    <span class="news-date">28 Février 2026</span>
+                    <h3>Mise à jour des CGV</h3>
+                    <p>Conformément aux nouvelles directives européennes, nos conditions générales de vente ont été mises à jour. Nous vous invitons à les lire de manière exhaustive car elles contiennent des informations vitales pour la poursuite de nos collaborations respectives.</p>
+                    <div class="read-more">Lire la suite...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bandeau surcharge cognitive -->
+        <div class="useless-banner">
+            "La connaissance s'accroît quand on la partage, mais l'information se perd quand elle est noyée sans aucune hiérarchisation visuelle évidente." - Citation Inspirante n°402
+        </div>
+    </main>
+
+    
     <div class="footer-trap">
         <span class="copyright">© 2026 - Tous droits réservés.</span>
         <a href="presentation.html" class="hidden-link">En savoir plus sur l'auteur</a>
     </div>
+
+   
+    <script>
+        document.querySelectorAll('.nav-item').forEach(item => {
+            if(item.textContent === 'Contact') {
+                item.addEventListener('click', () => {
+                    alert("Page en construction.");
+                });
+            }
+        });
+    </script>
 </body>
 </html>

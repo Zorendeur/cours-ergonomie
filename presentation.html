@@ -7,46 +7,75 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="presentation-body">
-    <!-- Zone d'erreur extrêmement mal placée : tout en haut de la page, hors de la vue pendant qu'on remplit le formulaire -->
+<body class="common-body">
+    
     <div id="form-feedback" class="feedback-msg"></div>
 
-    <!-- En-tête -->
+   
     <header class="main-header">
         <div class="logo">Alexandre - Formateur Expert</div>
         <nav class="main-nav">
-            <!-- Liens de navigation qui ne sont pas des balises <a> -->
-            <span class="nav-item">Accueil</span>
+            
+            <span class="nav-item" onclick="window.location.href='index.html'">Accueil</span>
             <span class="nav-item active">Profil</span>
-            <span class="nav-item">Contact</span>
+            <span class="nav-item" onclick="alert('La page de contact globale est en panne, utilisez le formulaire ci-dessous.')">Contact</span>
         </nav>
     </header>
 
-    <!-- Contenu Principal -->
+    
     <main class="content-wrapper">
         <section class="bio-section">
             <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?auto=format&fit=crop&q=80&w=400&h=400" alt="" class="profile-pic">
             
             <div class="bio-text">
                 <h2>Qui suis-je ?</h2>
-                <!-- Subtil: Ligne beaucoup trop longue (pas de max-width) et texte justifié qui crée des trous (rivers of white) -->
-                <!-- Subtil: Le contraste du texte est de #888 sur fond blanc, ce qui est limite lisible -->
-                <!-- Subtil: Font-size de 13px, un peu petit pour un texte de présentation -->
                 <p class="long-bio">
-                    Passionné par le développement web depuis plus de 15 ans, j'accompagne les entreprises et les étudiants dans la montée en compétences sur des technologies de pointe. Mon approche se veut résolument tournée vers l'humain, bien que la technique reste le socle incontournable de tout projet numérique viable. À travers mes diverses expériences, de développeur junior à Lead Tech, j'ai pu observer les évolutions fulgurantes de notre industrie. L'adaptation est donc la clé. J'ai fondé plusieurs startups et je participe activement à des projets Open Source pour redonner à la communauté ce qu'elle m'a enseigné. Dans mes cours, j'insiste sur la rigueur et l'architecture, car un code propre est le meilleur garant de la pérennité d'une application. Je crois fermement que l'apprentissage ne s'arrête jamais, et c'est avec cette philosophie que j'aborde chaque nouvelle session de mentorat.
+                    Passionné par le développement web depuis plus de 15 ans, j'accompagne les entreprises et les étudiants dans la montée en compétences sur des technologies de pointe. Mon approche se veut résolument tournée vers l'humain, bien que la technique reste le socle incontournable de tout projet numérique viable. À travers mes diverses expériences, de développeur junior à Lead Tech, j'ai pu observer les évolutions fulgurantes de notre industrie. L'adaptation est donc la clé. J'ai fondé plusieurs startups et je participe activement à des projets Open Source pour redonner à la communauté ce qu'elle m'a enseigné. Dans mes cours, j'insiste sur la rigueur et l'architecture, car un code propre est le meilleur garant de la pérennité d'une application. Je crois fermement que l'apprentissage ne s'arrête jamais, et c'est avec cette philosophie que j'aborde chaque nouvelle session de mentorat. L'innovation technologique est un chemin parsemé d'embûches qu'il faut savoir contourner avec agilité et persévérance.
                 </p>
             </div>
         </section>
 
-        <!-- Formulaire de contact -->
+        <section class="stats-section">
+            <div class="stat-box">
+                <span class="stat-number">15</span>
+                <span class="stat-label">Années d'expérience cumulées</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">3 452</span>
+                <span class="stat-label">Heures de formation dispensées</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">128</span>
+                <span class="stat-label">Projets menés à bien</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">4 210</span>
+                <span class="stat-label">Tasses de café consommées</span>
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <h3>Mes compétences techniques & fonctionnelles</h3>
+            <p class="skills-desc">Une maîtrise complète et transversale des environnements technologiques modernes et legacy, assurant une vision à 360 degrés sur chaque projet numérique de sa conception à sa mise en production finale.</p>
+            <div class="skills-list">
+                <span class="skill-tag">HTML4 / HTML5</span>
+                <span class="skill-tag">CSS 2.1 / CSS3 / SASS / LESS</span>
+                <span class="skill-tag">JavaScript / ES6+ / TypeScript</span>
+                <span class="skill-tag">React / Angular / Vue.js / Svelte</span>
+                <span class="skill-tag">Node.js / Express / NestJS</span>
+                <span class="skill-tag">PHP 5.6 / 7 / 8 / Symfony / Laravel</span>
+                <span class="skill-tag">MySQL / PostgreSQL / MongoDB</span>
+                <span class="skill-tag">Agile / Scrum / Kanban</span>
+                <span class="skill-tag">Adobe Flash / ActionScript 3 (Historique)</span>
+                <span class="skill-tag">jQuery / Mootools</span>
+            </div>
+        </section>
         <section class="contact-section">
             <div class="contact-card">
                 <h3>Me contacter</h3>
                 <p class="contact-desc">Remplissez le formulaire ci-dessous pour toute demande d'intervention.</p>
 
                 <div class="the-form">
-                    <!-- Subtil: Utilisaton de placeholder au lieu de label (le texte disparaît à la frappe) -->
-                    <!-- Subtil: Tabindex mal géré (passe du nom à l'objet puis à l'email) -->
                     <div class="input-group">
                         <input type="text" id="contact-nom" placeholder="Votre nom complet" tabindex="1">
                     </div>
@@ -60,22 +89,18 @@
                     </div>
 
                     <div class="input-group">
-                        <!-- Fat finger / Utilisabilité : un textarea très petit et non redimensionnable -->
                         <textarea id="contact-message" placeholder="Votre message..." tabindex="4"></textarea>
                     </div>
 
                     <div class="custom-checkbox-wrapper">
-                        <!-- Grosse erreur A11Y : pas de vrai input checkbox, juste des divs -->
                         <div class="custom-checkbox" id="rgpd-checkbox" tabindex="5"></div>
                         <span class="rgpd-text">J'accepte que mes données soient traitées dans le cadre de ma demande.</span>
                     </div>
-
-                    <!-- Erreur A11Y: Bouton en div au lieu de <button> (inutilisable au clavier avec Enter) -->
-                    <!-- Subtil: Pas d'effet hover pour indiquer que c'est cliquable -->
                     <div class="btn-submit" id="btn-envoyer" tabindex="6">Faire la demande</div>
                 </div>
             </div>
         </section>
     </main>
+<script src="script.js"></script>
 </body>
 </html>
