@@ -1,48 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const submitBtn = document.getElementById('submit-order');
-    const fakeBox = document.getElementById('cgv-box');
     
-    // Interaction avec la fausse checkbox (impossible au clavier)
-    fakeBox.addEventListener('click', () => {
-        fakeBox.classList.toggle('checked');
-    });
+    // --- Comportement de la fausse checkbox ---
+    const rgpdBox = document.getElementById('rgpd-checkbox');
+    if(rgpdBox) {
+        rgpdBox.addEventListener('click', () => {
+            rgpdBox.classList.toggle('active');
+        });
+        // Absence totale d'événement clavier (keydown) pour cette checkbox
+    }
 
-    // Pas de gestion de l'événement "keydown" sur Entrée car on utilise des <div>
+    // --- Comportement du formulaire de contact ---
+    const btnEnvoyer = document.getElementById('btn-envoyer');
+    const feedbackMsg = document.getElementById('form-feedback');
 
-    submitBtn.addEventListener('click', () => {
-        // Simulation d'une latence réseau ans aucun loader (absence de feedback)
-        setTimeout(() => {
-            let hasErrors = false;
-            const fields = ['prenom', 'nom', 'email', 'adresse', 'cp', 'ville'];
-            
-            // Nettoyage des erreurs précédentes
-            fields.forEach(f => document.getElementById(f).classList.remove('error'));
-            const globalErrors = document.getElementById('global-errors');
-            globalErrors.style.display = 'none';
+    if(btnEnvoyer) {
+        btnEnvoyer.addEventListener('click', () => {
+            // Effet subtil : Latence volontaire pour simuler un manque de réactivité sans loader
+            setTimeout(() => {
+                const nom = document.getElementById('contact-nom').value;
+                const email = document.getElementById('contact-email').value;
+                const objet = document.getElementById('contact-objet').value;
+                const message = document.getElementById('contact-message').value;
+                const rgpdChecked = rgpdBox.classList.contains('active');
 
-            // Validation sommaire
-            fields.forEach(f => {
-                const el = document.getElementById(f);
-                if (!el.value.trim()) {
-                    hasErrors = true;
-                    el.classList.add('error'); // On change uniquement la bordure
+                // Réinitialisation grossière des styles d'erreur (juste la bordure passe au rouge)
+                const inputs = ['contact-nom', 'contact-email', 'contact-objet', 'contact-message'];
+                inputs.forEach(id => {
+                    document.getElementById(id).style.borderBottom = "1px solid #ccc";
+                });
+
+                let hasError = false;
+
+                if(!nom || !email || !objet || !message) {
+                    hasError = true;
+                    // On rougit vaguement les champs vides mais c'est peu visible
+                    inputs.forEach(id => {
+                        if(!document.getElementById(id).value) {
+                            document.getElementById(id).style.borderBottom = "1px solid #e74c3c";
+                        }
+                    });
                 }
-            });
 
-            if (!fakeBox.classList.contains('checked')) {
-                hasErrors = true;
-            }
+                if(!rgpdChecked) {
+                    hasError = true;
+                }
 
-            if (hasErrors) {
-                // Erreur affichée tout en haut de la page, loin du champ fautif
-                globalErrors.innerHTML = "Une erreur est survenue dans le formulaire.";
-                globalErrors.style.display = 'block';
-                // On remonte la page, l'utilisateur perd son focus 
-                window.scrollTo(0, 0);
-            } else {
-                // Succès non stylisé
-                alert("Paiement validé.");
-            }
-        }, 3500); // Latence de 3.5 secondes très frustrante
-    });
+                if(hasError) {
+                    // Erreur éloignée des champs, très générique !
+                    feedbackMsg.textContent = "Certaines informations sont manquantes ou incorrectes.";
+                    feedbackMsg.style.display = 'block';
+                } else {
+                    feedbackMsg.textContent = "Votre message a été envoyé (enfin, simulé !).";
+                    feedbackMsg.style.backgroundColor = '#e8f5e9';
+                    feedbackMsg.style.color = '#2e7d32';
+                    feedbackMsg.style.display = 'block';
+                }
+
+            }, 1200); // 1.2s de latence sans spinner, suffisant pour frustrer l'utilisateur
+
+        });
+    }
 });

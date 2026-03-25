@@ -1,157 +1,252 @@
-/* 
-* CSS Horrifique pour l'Atelier
-* Pièges intégrés : outline removed, mauvais contrastes, targets minuscules, etc.
-*/
-
+/* RÉGLAGES GLOBAUX PIÉGÉS */
 * {
-    /* Impossible de savoir où on est en naviguant avec Tab */
-    outline: none !important; 
     box-sizing: border-box;
+    /* Piège majeur mais discret : suppression de l'outline sur l'état :focus */
+    outline: none !important;
 }
 
 body {
-    /* Police Serif difficile à lire sur écran pour les petits textes */
-    font-family: 'Times New Roman', Times, serif; 
-    background-color: #fcfcfc;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    /* Contraste très faible */
-    color: #999; 
+    background-color: #fafbfc; /* Fond très clair */
 }
 
-.header {
-    background-color: #eaeaea;
+/* =========================================
+   PAGE 1 : INDEX.HTML (La Landing piégée)
+   ========================================= */
+.landing-body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.hero-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    text-align: center;
     padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #546e7a;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Faux CTA qui attire l'attention mais ne sert à rien */
+.btn-primary {
+    display: inline-block;
+    background-color: #1976d2;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0;
+}
+
+/* Le Footer avec le vrai lien caché */
+.footer-trap {
+    background-color: #fff;
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
+
+.copyright {
+    color: #ccc;
+    font-size: 12px;
+    margin-right: 50px;
+}
+
+.hidden-link {
+    /* Le lien ne ressemble pas à un lien : pas de soulignement, couleur grise, pas de cursor pointer */
+    text-decoration: none;
+    color: #b0bec5; 
+    font-size: 12px;
+    cursor: default; /* GROS PIÈGE ERGONOMIQUE */
+}
+
+/* =========================================
+   PAGE 2 : PRESENTATION.HTML 
+   ========================================= */
+.presentation-body {
+    background-color: #ffffff;
+}
+
+.main-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .logo {
-    font-size: 16px;
-    font-weight: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #333;
 }
 
-.nav span {
-    /* Liens trop proches */
-    margin: 0 5px; 
-    color: #b0b0b0; 
-    /* Pas de curseur pointer */
-    cursor: default; 
+.nav-item {
+    margin-left: 30px;
+    font-size: 0.9rem;
+    color: #999; /* Contraste faible */
+    cursor: default; /* Pas d'affordance */
 }
 
-.intro-container {
-    padding: 20px;
+.nav-item.active {
+    color: #333;
+    font-weight: 600;
 }
 
-.long-text {
-    /* Lignes trop longues, l'œil se perd */
-    width: 100%; 
-    font-size: 12px;
-    /* Pas d'interligne (respiration) */
-    line-height: 1; 
+.content-wrapper {
+    max-width: 1200px; /* Trop large pour de la lecture */
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.bio-section {
+    display: flex;
+    flex-wrap: wrap; /* Sur mobile, ça passe à la ligne */
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    /* Piège subtil : pas de Alt explicite dans le HTML */
+}
+
+.bio-text {
+    flex: 1;
+}
+
+.bio-text h2 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.long-bio {
+    /* Pièges typographiques combinés */
+    font-size: 13px; /* Trop petit */
+    color: #888888; /* Contraste insuffisant */
+    text-align: justify; /* Crée des "rivières de blanc", dur à lire pour les dyslexiques */
+    line-height: 1.4;
+    width: 100%; /* Ligne beaucoup trop longue, l'oeil se perd (loi de la proxémie visuelle rompue) */
 }
 
 /* --- Formulaire --- */
-.form-container {
-    background-color: white;
-    width: 95%;
+.contact-section {
+    background-color: #fcfcfc;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #eee;
     max-width: 600px;
     margin: 0 auto;
-    padding: 10px;
 }
 
-h2 {
-    font-size: 14px;
-    color: #888;
+.contact-card h3 {
+    margin-top: 0;
+    color: #444;
 }
 
-.form-row {
-    /* Éléments collés (Fat Finger Syndrome) */
-    margin-bottom: 2px; 
-    display: flex;
-    gap: 2px;
+.contact-desc {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 30px;
 }
 
-input {
-    border: 1px solid #eee;
-    background-color: #fbfbfb;
-    color: #b3b3b3;
-    /* Pading minuscule, zone de clic < 44px */
-    padding: 4px; 
-    font-size: 11px;
+.input-group {
+    margin-bottom: 25px;
+}
+
+/* Design minimaliste mais désastreux pour l'UX */
+input, textarea {
     width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc; /* Difficile de voir la limite du champ */
+    background: transparent;
+    padding: 10px 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: #333;
 }
 
-input::placeholder {
-    color: #d0d0d0; /* Presque invisible */
+input::placeholder, textarea::placeholder {
+    color: #bbb; /* Trop clair */
 }
 
-/* Retour d'erreur uniquement via la couleur (Daltonisme) */
-input.error {
-    border: 1px solid #ff9999; 
+/* Zone de contact trop petite et bloquée */
+textarea {
+    resize: none; 
+    height: 40px; 
 }
 
-.tiny-input {
-    width: 35px; /* Très dur de cliquer dessus sur mobile */
-}
-
-.fake-checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-top: 25px;
-}
-
-.fake-checkbox {
-    width: 10px;
-    height: 10px;
-    border: 1px solid #ccc;
-    margin-right: 5px;
-    background-color: white;
-}
-
-.fake-checkbox.checked {
-    background-color: #ddd;
-}
-
-.cgv-text {
-    font-size: 9px;
-}
-
-.actions {
-    margin-top: 10px;
-    /* Positionnement peu ergonomique pour les droitiers sur grand écran */
-    display: flex;
-    justify-content: flex-start; 
-}
-
-.btn {
-    /* Padding infime */
-    padding: 3px 8px; 
-    /* Même couleur de fond pour les deux boutons = ambiguïté */
-    background-color: #cccccc; 
-    /* Texte blanc sur fond gris clair = Contraste catastrophique */
-    color: white; 
-    font-size: 12px;
-    /* Bouton d'annulation juste à côté de celui de validation */
-    margin-right: 4px; 
-}
-
-/* Erreurs globales */
-.global-errors {
-    background-color: #ffcccc;
-    color: #cc0000;
+/* Feedback Box (lointaine) */
+.feedback-msg {
+    display: none;
     padding: 10px;
-    margin: 10px;
+    margin-bottom: 20px;
+    background-color: #ffebee;
+    color: #c62828;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+/* Fausse Checkbox Custom */
+.custom-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.custom-checkbox {
+    min-width: 16px;
+    height: 16px;
+    border: 1px solid #aaa;
+    margin-right: 12px;
+    margin-top: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.custom-checkbox.active {
+    background-color: #333;
+}
+
+.rgpd-text {
     font-size: 11px;
-    text-align: center;
+    color: #777;
 }
 
-.promo-banner {
-    margin-top: 60px;
-    text-align: center;
-}
-
-.promo-banner img {
-    max-width: 100%;
-    opacity: 0.8;
+/* Bouton Soumettre en DIV */
+.btn-submit {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 12px 25px;
+    font-size: 13px;
+    border-radius: 4px;
+    /* Piège visuel : pas de :hover, pas de changement de curseur, ça a l'air statique */
 }
