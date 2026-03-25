@@ -206,12 +206,16 @@ textarea {
 /* Feedback Box (lointaine) */
 .feedback-msg {
     display: none;
-    padding: 10px;
-    margin-bottom: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
     background-color: #ffebee;
     color: #c62828;
-    font-size: 13px;
-    border-radius: 4px;
+    font-size: 14px;
+    z-index: 100;
 }
 
 /* Fausse Checkbox Custom */
@@ -248,5 +252,6 @@ textarea {
     padding: 12px 25px;
     font-size: 13px;
     border-radius: 4px;
-    /* Piège visuel : pas de :hover, pas de changement de curseur, ça a l'air statique */
+    cursor: pointer; /* Au moins on peut cliquer */
+    /* Piège visuel : pas de :hover, ça a l'air statique malgré le curseur */
 }

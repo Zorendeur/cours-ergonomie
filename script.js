@@ -15,15 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(btnEnvoyer) {
         btnEnvoyer.addEventListener('click', () => {
-            // Effet subtil : Latence volontaire pour simuler un manque de réactivité sans loader
+            // Empêcher les clics multiples pendant le chargement
+            if (btnEnvoyer.classList.contains('loading')) return;
+            
+            // État d'attente visible (Loading)
+            btnEnvoyer.classList.add('loading');
+            const originalText = btnEnvoyer.textContent;
+            btnEnvoyer.textContent = "Traitement en cours...";
+            btnEnvoyer.style.backgroundColor = "#777";
+            feedbackMsg.style.display = 'none';
+
+            // Effet d'attente insupportable (3 secondes pleines)
             setTimeout(() => {
+                // Rétablir le bouton
+                btnEnvoyer.classList.remove('loading');
+                btnEnvoyer.textContent = originalText;
+                btnEnvoyer.style.backgroundColor = "#333";
+
                 const nom = document.getElementById('contact-nom').value;
                 const email = document.getElementById('contact-email').value;
                 const objet = document.getElementById('contact-objet').value;
                 const message = document.getElementById('contact-message').value;
                 const rgpdChecked = rgpdBox.classList.contains('active');
 
-                // Réinitialisation grossière des styles d'erreur (juste la bordure passe au rouge)
+                // Réinitialisation grossière des styles d'erreur
                 const inputs = ['contact-nom', 'contact-email', 'contact-objet', 'contact-message'];
                 inputs.forEach(id => {
                     document.getElementById(id).style.borderBottom = "1px solid #ccc";
@@ -33,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if(!nom || !email || !objet || !message) {
                     hasError = true;
-                    // On rougit vaguement les champs vides mais c'est peu visible
+                    // On rougit vaguement les champs vides
                     inputs.forEach(id => {
                         if(!document.getElementById(id).value) {
                             document.getElementById(id).style.borderBottom = "1px solid #e74c3c";
@@ -46,18 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if(hasError) {
-                    // Erreur éloignée des champs, très générique !
-                    feedbackMsg.textContent = "Certaines informations sont manquantes ou incorrectes.";
+                    // L'erreur est injectée tout en haut de la page, hors de l'écran visible !
+                    feedbackMsg.textContent = "Attention : Certaines informations sont manquantes.";
+                    feedbackMsg.style.backgroundColor = '#ffebee';
+                    feedbackMsg.style.color = '#c62828';
                     feedbackMsg.style.display = 'block';
+                    
+                    // On NE force PAS le scroll. L'utilisateur doit deviner l'erreur ou scroller de lui-même.
                 } else {
-                    feedbackMsg.textContent = "Votre message a été envoyé (enfin, simulé !).";
+                    feedbackMsg.textContent = "Merci, votre message a bien été envoyé.";
                     feedbackMsg.style.backgroundColor = '#e8f5e9';
                     feedbackMsg.style.color = '#2e7d32';
                     feedbackMsg.style.display = 'block';
                 }
 
-            }, 1200); // 1.2s de latence sans spinner, suffisant pour frustrer l'utilisateur
-
+            }, 3000); // 3 secondes
         });
     }
 });
